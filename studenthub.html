@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudentHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= AUTH ================= -->
+<div id="authScreen" class="auth-screen">
+    <div class="auth-card">
+        <div class="brand auth-brand">
+            <div class="brand-logo">S</div>
+            <div>
+                <h2>StudentHub</h2>
+                <span>Student productivity</span>
+            </div>
+        </div>
+
+        <div id="loginBox">
+            <h1>Welcome back 👋</h1>
+            <p class="auth-subtitle">Login to manage your studies.</p>
+            <form id="loginForm">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+                <button type="submit" class="primary-btn full-btn">Login</button>
+            </form>
+            <p class="switch-auth">Don't have an account? <button type="button" id="showSignup">Create account</button></p>
+        </div>
+
+        <div id="signupBox" class="hidden">
+            <h1>Create account 🚀</h1>
+            <p class="auth-subtitle">Start organizing your student life.</p>
+            <form id="signupForm">
+                <label>Full Name</label>
+                <input type="text" id="name" placeholder="Your name" required>
+                <label>Email</label>
+                <input type="email" id="signupEmail" placeholder="you@example.com" required>
+                <label>Password</label>
+                <input type="password" id="signupPassword" placeholder="Create password" minlength="4" required>
+                <button type="submit" class="primary-btn full-btn">Create Account</button>
+            </form>
+            <p class="switch-auth">Already have an account? <button type="button" id="showLogin">Login</button></p>
+        </div>
+    </div>
+</div>
+
+<!-- ================= APP ================= -->
+<div id="mainApp" class="hidden">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="brand sidebar-brand">
+            <div class="brand-logo">S</div>
+            <div>
+                <h2>StudentHub</h2>
+                <span>Student dashboard</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-link active" data-section="dashboard"><span>⌂</span>Dashboard</a>
+            <a href="#subjects" class="nav-link" data-section="subjects"><span>📚</span>Subjects</a>
+            <a href="#assignments" class="nav-link" data-section="assignments"><span>📝</span>Assignments</a>
+            <a href="#deadlines" class="nav-link" data-section="deadlines"><span>⏰</span>Deadlines</a>
+            <a href="#calendar" class="nav-link" data-section="calendar"><span>📅</span>Calendar</a>
+            <a href="#profile" class="nav-link" data-section="profile"><span>👤</span>Profile</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button id="themeToggle" class="side-action">🌙 Dark Mode</button>
+            <button id="logoutBtn" class="side-action logout-btn">↪ Logout</button>
+            <div class="sidebar-user">
+                <div id="sidebarAvatar" class="avatar">S</div>
+                <div>
+                    <strong id="sidebarUserName">Student</strong>
+                    <small>Student</small>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <header class="mobile-header">
+        <div class="brand">
+            <div class="brand-logo">S</div>
+            <h2>StudentHub</h2>
+        </div>
+        <button id="mobileMenu" class="mobile-menu">☰</button>
+    </header>
+
+    <main class="content">
+
+        <div class="topbar">
+            <div>
+                <p class="top-label">STUDENT DASHBOARD</p>
+                <h2 id="pageTitle">Dashboard</h2>
+            </div>
+            <div id="topAvatar" class="avatar">S</div>
+        </div>
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="app-section active-section">
+
+            <div class="welcome-card">
+                <div>
+                    <span class="welcome-small">Good to see you!</span>
+                    <h1>Welcome, <span id="welcomeName">Student</span> 👋</h1>
+                    <p>Stay organized and keep your academic goals on track.</p>
+                    <a href="#assignments" class="white-btn">View Assignments →</a>
+                </div>
+                <div class="welcome-illustration">🎓</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <span>Subjects</span>
+                    <strong id="subjectCount">0</strong>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <span>Assignments</span>
+                    <strong id="assignmentCount">0</strong>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏰</div>
+                    <span>Upcoming</span>
+                    <strong id="upcomingCount">0</strong>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✓</div>
+                    <span>Completed</span>
+                    <strong id="completedCount">0</strong>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="section-card chart-card">
+                    <div class="card-heading">
+                        <div>
+                            <span class="section-label">PERFORMANCE</span>
+                            <h3>Assignment Progress</h3>
+                        </div>
+                        <strong id="progressPercent">0%</strong>
+                    </div>
+                    <div class="chart-area">
+                        <div class="chart-circle" id="progressCircle">
+                            <div>
+                                <strong id="circlePercent">0%</strong>
+                                <span>completed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p id="progressText" class="center-text">0 of 0 assignments completed</p>
+                </div>
+
+                <div class="section-card upcoming-card">
+                    <div class="card-heading">
+                        <div>
+                            <span class="section-label">UPCOMING</span>
+                            <h3>Next Deadlines</h3>
+                        </div>
+                        <a href="#deadlines">View all</a>
+                    </div>
+                    <div id="dashboardDeadlines"></div>
+                </div>
+            </div>
+
+            <div class="search-box">
+                <span>🔎</span>
+                <input id="globalSearch" type="text" placeholder="Search subjects or assignments...">
+            </div>
+
+            <div class="section-heading">
+                <span class="section-label">QUICK ACTIONS</span>
+                <h2>Manage your studies</h2>
+            </div>
+
+            <div class="quick-grid">
+                <a href="#subjects" class="quick-card">
+                    <div class="quick-icon">📚</div>
+                    <h3>Add Subject</h3>
+                    <p>Create and manage your subjects.</p>
+                </a>
+                <a href="#assignments" class="quick-card">
+                    <div class="quick-icon">📝</div>
+                    <h3>Add Assignment</h3>
+                    <p>Track your academic work.</p>
+                </a>
+                <a href="#calendar" class="quick-card">
+                    <div class="quick-icon">📅</div>
+                    <h3>Open Calendar</h3>
+                    <p>See all your deadlines.</p>
+                </a>
+            </div>
+
+        </section>
+
+        <!-- SUBJECTS -->
+        <section id="subjects" class="app-section">
+            <div class="section-heading">
+                <span class="section-label">ACADEMICS</span>
+                <h2>My Subjects</h2>
+                <p>Add and manage your current subjects.</p>
+            </div>
+
+            <div class="input-card">
+                <input id="subjectInput" placeholder="Enter subject name...">
+                <button id="addSubjectBtn" class="primary-btn">+ Add Subject</button>
+            </div>
+
+            <div id="subjectList" class="subject-grid"></div>
+        </section>
+
+        <!-- ASSIGNMENTS -->
+        <section id="assignments" class="app-section">
+            <div class="section-heading">
+                <span class="section-label">TASK MANAGEMENT</span>
+                <h2>Assignments</h2>
+                <p>Track your academic tasks and deadlines.</p>
+            </div>
+
+            <div class="input-card assignment-input-card">
+                <select id="assignmentSubjectSelect">
+                    <option value="">Select Subject</option>
+                </select>
+                <input id="assignmentInput" placeholder="Assignment name...">
+                <input type="date" id="assignmentDate">
+                <select id="assignmentPriority">
+                    <option value="Low">Low Priority</option>
+                    <option value="Medium" selected>Medium Priority</option>
+                    <option value="High">High Priority</option>
+                </select>
+                <button id="addAssignmentBtn" class="primary-btn">+ Add</button>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="pending">Pending</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="high">High Priority</button>
+            </div>
+
+            <div id="assignmentList" class="assignment-list"></div>
+        </section>
+
+        <!-- DEADLINES -->
+        <section id="deadlines" class="app-section">
+            <div class="section-heading">
+                <span class="section-label">DEADLINE TRACKER</span>
+                <h2>Upcoming Deadlines</h2>
+                <p>Never miss your important assignments.</p>
+            </div>
+            <div id="deadlineList" class="deadline-list"></div>
+        </section>
+
+        <!-- CALENDAR -->
+        <section id="calendar" class="app-section">
+            <div class="section-heading">
+                <span class="section-label">PLANNER</span>
+                <h2>Academic Calendar</h2>
+                <p>View assignments by date.</p>
+            </div>
+
+            <div class="calendar-card">
+                <div class="calendar-header">
+                    <button id="prevMonth" class="calendar-nav">‹</button>
+                    <h2 id="calendarTitle">Month</h2>
+                    <button id="nextMonth" class="calendar-nav">›</button>
+                </div>
+                <div class="weekdays">
+                    <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                </div>
+                <div id="calendarGrid" class="calendar-grid"></div>
+            </div>
+        </section>
+
+        <!-- PROFILE -->
+        <section id="profile" class="app-section">
+            <div class="section-heading">
+                <span class="section-label">ACCOUNT</span>
+                <h2>My Profile</h2>
+                <p>Manage your StudentHub profile.</p>
+            </div>
+
+            <div class="profile-card">
+                <div id="profileAvatar" class="profile-avatar">S</div>
+                <div class="profile-info">
+                    <label>Full Name</label>
+                    <input id="profileName" placeholder="Your name">
+                    <label>Email</label>
+                    <input id="profileEmail" type="email" placeholder="Your email">
+                    <button id="saveProfileBtn" class="primary-btn">Save Profile</button>
+                </div>
+            </div>
+        </section>
+
+        <footer>© 2026 StudentHub • Built for students</footer>
+
+    </main>
+</div>
+
+<div id="toast" class="toast">
+    <span>✓</span>
+    <p id="toastMessage">Done</p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
